@@ -1,0 +1,26 @@
+.nav {
+    border-bottom: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+}
+
+.link {
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    margin: 0px 30px 0px;
+    
+    &:visited { 
+        color: black 
+    }
+
+    &:hover {
+        color: blue;
+    }
+}
+
+.active_link {
+    color: green;
+}

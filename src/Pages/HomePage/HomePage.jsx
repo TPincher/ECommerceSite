@@ -1,17 +1,23 @@
-import React, { useEffect } from 'react'
+import styles from "./HomePage.module.scss"
+import Carousel from '../../components/Carousel/Carousel'
 
 
 const HomePage = () => {
 
-// const handleClick = () => {
-//   getAllData()
-// }
+  const images = [
+    '/src/assets/redshoes.jpg',
+    '/src/assets/whitehelmets.jpg',
+    '/src/assets/blueshoes.jpg',
+    '/src/assets/blackgloves.jpg',
+    '/src/assets/blackshoes.jpg',
+    '/src/assets/whiteshoes.jpg'
+  ];
 
   return (
-    <div>
-      HomePage
-      {/* <button onClick={handleClick}>Get data</button> */}
+    <div className={styles.HomePage}>
+      <Carousel images={images} />  
     </div>
+
   )
 }
 

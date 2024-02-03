@@ -1,10 +1,22 @@
-.modal {
-    height: 50vh;
-    border: 2px solid black;
-    width: 50vw;
+.modalBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
     position: fixed;
-    bottom: 25vh;
-    right: 25vw;
+    top: 0;
+    background-color: rgba(255,255,255,0.3);
+}
+
+.modal {
+    height: 90vh;
+    border: 2px solid black;
+    width: 30vw;
+    position: fixed;
+    bottom: 5vh;
+    right: 0;
     background-color: beige;
     padding: 10px; 
+    text-align: center;
 }

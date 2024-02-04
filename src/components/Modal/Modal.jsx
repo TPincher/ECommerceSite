@@ -4,7 +4,7 @@ import { Favourited, addItemtoCart } from '../../../services/data'
 import { DataContext } from '../../context/DataContextProvider'
 import favIcon from "../../assets/star.png"
 import notFavIcon from "../../assets/blackstar.png"
-// import * as images from "../../assets/imports"
+import * as images from "../../assets/imports"
 
 
 const Modal = ({ showModal, setShowModal, localID }) => {
@@ -19,6 +19,8 @@ const handleAddToCart = () => {
 const alternateFavourite = () => {
     Favourited(data[localID].SKU, !data[localID].favourited)
 }
+
+console.log(images)
 
 const starColour = data[localID].favourited
     ? favIcon

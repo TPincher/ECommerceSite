@@ -1,10 +1,33 @@
-.modal {
-    height: 50vh;
-    border: 2px solid black;
-    width: 50vw;
+.modalBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
     position: fixed;
-    bottom: 25vh;
-    right: 25vw;
-    background-color: beige;
+    top: 0;
+    background-color: rgba(255,255,255,0.6);
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 80vh;
+    border: 2px double black;
+    border-width: 4px;
+    border-radius: 5px;
+    width: 30vw;
+    position: fixed;
+    bottom: 10vh;
+    right: 5vw;
+    background: linear-gradient(to bottom right, silver 5%, grey 95%);
     padding: 10px; 
+    text-align: center;
+}
+
+.cartButton {
+    width: 60%;
+    font-size: larger;
 }

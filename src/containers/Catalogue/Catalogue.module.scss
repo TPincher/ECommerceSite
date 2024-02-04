@@ -1,0 +1,45 @@
+.outerBox {
+    display: flex;
+    width: 100vw;
+}
+
+.categoryCard {
+    width: 60vw;
+    height: 12vh;
+    border: 2px double black;
+    border-radius: 5px;
+    font-size: 30px;
+    text-align: center;
+    background: linear-gradient(to bottom right, silver 5%, grey 95%);
+    transition: margin 1s;
+    margin-top: 20px;
+}
+
+.left {
+    margin-left: 5%;
+
+    &:hover {
+        margin-left: 15%;
+        background-color: grey;
+        border-color: blue;
+    }
+}
+
+.right {
+    margin-left: 60%;
+
+    &:hover {
+        margin-left: 50%;
+        background-color: grey;
+        border-color: blue;
+    }
+}
+
+h2 {
+    text-decoration: none;
+    color: black;
+}
+
+a:link {
+    text-decoration: none;    
+}

@@ -1,0 +1,11 @@
+
+.cartItem {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 200px;
+    width: 50vw;
+    text-align: center;
+    background: linear-gradient(to right, silver 55%, grey 95%);
+    border-bottom: 2px solid gray
+}

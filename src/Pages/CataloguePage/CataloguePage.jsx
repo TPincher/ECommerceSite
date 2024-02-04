@@ -1,10 +1,10 @@
 import React from 'react'
 import Catalogue from '../../containers/Catalogue/Catalogue'
+import styles from "../GlobalBackground.module.scss"
 
 const ContactPage = () => {
   return (
-    <div>
-      CataloguePage
+    <div className={styles.Background}>
       <Catalogue />
     </div>
   )

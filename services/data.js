@@ -1,37 +1,49 @@
 // firestore docs at https://firebase.google.com/docs/firestore
 
-import { collection, getDoc, getDocs, setDoc, doc, addDoc, writeBatch } from "firebase/firestore"
+import { setDoc, doc, onSnapshot, collection, } from "firebase/firestore"
 import { db } from "../config/firebase"
 
-export const getAllData = async () => {
-    const querySnapshot = await getDocs(collection(db, "sportsgear"));
-    const dataToReturn = querySnapshot.docs.map((doc) => {
-        return {
-            id : doc.id,
-            ...doc.data()
-        }
-    })
-    return dataToReturn
+export const addItemtoCart = async (SKU) => {
+    const update = doc(db, "sportsgear", String(SKU))
+    setDoc(update, {quantityInCart : 1, inCart : true}, {merge: true});
 }
 
-
-export const getModalData = async (SKU) => {
-    console.log(SKU)
-    const singleDoc = doc(db, "sportsgear", `${SKU}`)
-    const singleDocSnap = await getDoc(singleDoc);
-    const modalReturn = singleDocSnap.data()
-      return {
-        id : modalReturn.id,
-        category : modalReturn.category,
-        colour : modalReturn.colour,
-        size : modalReturn.size,
-        image : modalReturn.image,
-        favourited : modalReturn.favourited,
-        inCart : modalReturn.inCart,
-        quantity : modalReturn.quantity,
-        price : modalReturn.price,
-      }
+export const updateQuantity = async (SKU, newAmount) => {
+    const update = doc(db, "sportsgear", String(SKU))
+    setDoc(update, {quantityInCart : newAmount}, {merge: true});
 }
+
+export const updateStockQuantity = async (SKU, newAmount) => {
+    const update = doc(db, "sportsgear", String(SKU))
+    setDoc(update, {quantityAvailable : newAmount}, {merge: true});
+}
+
+export const removeFromCart = async (SKU) => {
+    const update = doc(db, "sportsgear", String(SKU))
+    setDoc(update, {quantityInCart : 0, inCart : false}, {merge: true});
+}
+
+export const Favourited = async (SKU, change) => {
+    const update = doc(db, "sportsgear", String(SKU))
+    setDoc(update, {favourited : change}, {merge: true});
+}
+
+export const receiveDelivery = async (SKU, currentAvailable, deliveredAmount) => {
+    const update = doc(db, "sportsgear", String(SKU))
+    setDoc(update, {quantityAvailable : (currentAvailable + deliveredAmount)}, {merge: true});
+}
+
+// Let's see if we can make this work with automatic updates
+export const subscribeToSportsgear = (callback) => {
+    const collectionRef = collection(db, "sportsgear");
+    const unsubscribe = onSnapshot(collectionRef, (querySnapshot) => {
+        const collectionData = querySnapshot.docs.map((doc) => {
+            return { id: doc.id, ...doc.data() };
+        });
+        callback(collectionData);
+    });
+    return unsubscribe;
+};
 
 
 
@@ -41,8 +53,26 @@ export const resetDatabase = () => {
     const categories = ["gloves", "helmets", "shoulderpads", "mouthguards", "shoes"]
     const colours = ["red", "white", "blue", "black"]
     const sizes = ["small", "medium", "large", "extra large"]
+    const categoryCost = {
+        "gloves" : 20,
+        "helmets" : 80,
+        "shoulderpads" : 200,
+        "mouthguards" : 15,
+        "shoes" : 40
+    }
+    const colourCost = {
+        "red" : 5,
+        "white" : 8,
+        "blue" : 10,
+        "black" : 15
+    }
+    const sizeCost = {
+        "small" : 0,
+        "medium" : 10,
+        "large" : 20,
+        "extra large" : 30
+    }
     let id = 1
-    const array = []
     
     categories.forEach((category) => {
         colours.forEach((colour) => {
@@ -53,15 +83,16 @@ export const resetDatabase = () => {
                     category : category,
                     colour : colour,
                     size : size,
-                    image : "notYetSet",
+                    image : String(colour) + String(category),
                     favourited : false,
+                    quantityInCart : 0,
+                    quantityAvailable : 5,
                     inCart : false,
-                    quantity : 5,
-                    price : 49.95,
+                    price : (categoryCost[category] + colourCost[colour] + sizeCost[size])
                 })
                 id++ 
             })
         })
     })
-    console.log(array)
+
 }

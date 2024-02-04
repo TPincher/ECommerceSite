@@ -1,9 +1,13 @@
 .nav {
-    border-bottom: 2px solid black;
+    border-bottom: 5px solid black;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: white;
 }
 
 .link {

@@ -7,6 +7,7 @@ const CheckoutItem = ( {localID} ) => {
 
     const {data} = useContext(DataContext)
     const localData = data[localID]
+    const imageString = "/src/assets/" + data[localID].image + ".jpg"
 
     const decrementButton = (event) => {
       event.preventDefault()
@@ -30,14 +31,19 @@ const CheckoutItem = ( {localID} ) => {
 
 
     return (
-      <div className={styles.cartItem}>
-        <p>{localData.name}</p>
-        <p>{localData.image}</p>
-        <p>Total cost ${(localData.quantityInCart * localData.price).toFixed(2)}</p>
-        <button onClick={decrementButton} disabled={localData.quantityInCart === 1}>-</button>
-            {localData.quantityInCart}
-        <button onClick={incrementButton} disabled={localData.quantityInCart === localData.quantityAvailable}>+</button>
-        <button onClick={removeButton}>Remove from cart</button>
+        <div className={styles.cartItem}>
+          <div>
+            <h3>{localData.name}</h3>
+            <p>Total cost ${(localData.quantityInCart * localData.price).toFixed(2)}</p>
+            <button onClick={decrementButton} disabled={localData.quantityInCart === 1}>-</button>
+                {localData.quantityInCart}
+            <button onClick={incrementButton} disabled={localData.quantityInCart === localData.quantityAvailable}>+</button>
+            <button onClick={removeButton}>Remove from cart</button>
+            <p>{localData.quantityAvailable} units available</p>
+          </div>
+          <div>
+            <img src={imageString} alt="productImage" height="150px" width="200px" />
+          </div>
         </div>
 )
 }

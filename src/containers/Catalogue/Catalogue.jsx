@@ -24,7 +24,11 @@ const Catalogue = () => {
                     if (number % 2 === 1) classes.push(styles.left);
                     else classes.push(styles.right);
                     // change this link to be the whole button, not just the text
-                     return <div className={classes.join(" ")}><Link to={`./${category}`}>{category}</Link></div>
+                     return <Link to={`./${category}`} key={index}>
+                                <div className={classes.join(" ")}>
+                                    <h2>{category.toUpperCase()}</h2>
+                                </div>
+                            </Link>
                    })}
              </section>
         </div>

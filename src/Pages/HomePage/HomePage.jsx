@@ -6,9 +6,7 @@ const HomePage = () => {
 
   const images = [
     '/src/assets/redshoes.jpg',
-    '/src/assets/whitehelmets.jpg',
     '/src/assets/blueshoes.jpg',
-    '/src/assets/blackgloves.jpg',
     '/src/assets/blackshoes.jpg',
     '/src/assets/whiteshoes.jpg'
   ];

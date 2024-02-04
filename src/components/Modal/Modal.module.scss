@@ -6,17 +6,28 @@
     width: 100vw;
     position: fixed;
     top: 0;
-    background-color: rgba(255,255,255,0.3);
+    background-color: rgba(255,255,255,0.6);
 }
 
 .modal {
-    height: 90vh;
-    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 80vh;
+    border: 2px double black;
+    border-width: 4px;
+    border-radius: 5px;
     width: 30vw;
     position: fixed;
-    bottom: 5vh;
-    right: 0;
-    background-color: beige;
+    bottom: 10vh;
+    right: 5vw;
+    background: linear-gradient(to bottom right, silver 5%, grey 95%);
     padding: 10px; 
     text-align: center;
+}
+
+.cartButton {
+    width: 60%;
+    font-size: larger;
 }

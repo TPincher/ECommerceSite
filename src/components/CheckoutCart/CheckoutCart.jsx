@@ -21,20 +21,28 @@ const CheckoutCart = () => {
 
   return (
       <form className={styles.checkoutContainer}>
-        <h1>Checkout Cart</h1>
+        <h1>CHECKOUT</h1>
+        <div className={styles.box}>
           {data && data.map((itemInCart, id) => {
             if (itemInCart.inCart) {
+              // Shoehorned in to get the total cost working. This can be extracted down the road.
               checkoutArray.push(itemInCart.SKU)
               checkoutQtyArray.push(itemInCart.quantityAvailable - itemInCart.quantityInCart)
               cartTotal.push(Number(itemInCart.quantityInCart * itemInCart.price))
               return(
-                <CheckoutItem itemInCart={itemInCart.name} localID={id} />
+                <CheckoutItem key={id} itemInCart={itemInCart.name} localID={id} />
                 )
             }
             })
           }
-          <p>Cart total ${cartTotal.reduce((acc, cur) => acc + cur, 0).toFixed(2)}</p>
-          <button onClick={checkout}> Complete order! </button>
+            {checkoutQtyArray.length > 0
+                        ?<div className={styles.totals}>
+                          <h2>Cart total ${cartTotal.reduce((acc, cur) => acc + cur, 0).toFixed(2)}</h2>
+                          <button onClick={checkout} className={styles.button}> Complete order! </button>
+                        </div>
+                        :<h2 className={styles.emptyCart}>No items in cart</h2>
+            }
+          </div>
       </form>
   )
 

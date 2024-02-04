@@ -11,12 +11,15 @@ const FavouritesPage = () => {
     const favArray = []
 
     return <div className={styles.Background}>
-                <Link to="/catalogue">Back to catalogue</Link>
+                <div className={pageStyles.titleBox}>
+                    <h1>FAVOURITES</h1>
+                    <Link to="/catalogue">Back to catalogue</Link>
+                </div>
                 <div className={pageStyles.box}>
                 {data && data.map((item, id) => {
                 if (item.favourited === true) {
                     favArray.push(id)
-                    return <ProductCard localID={id} name={item.name} quantityAvailable={item.quantityAvailable} />
+                    return <ProductCard localID={id} name={item.name} quantityAvailable={item.quantityAvailable} inCart={item.inCart}/>
                     }    
                 })
                 }

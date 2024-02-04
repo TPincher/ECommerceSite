@@ -29,7 +29,6 @@ export const Favourited = async (SKU, change) => {
 }
 
 export const receiveDelivery = async (SKU, currentAvailable, deliveredAmount) => {
-    console.log(SKU, deliveredAmount)
     const update = doc(db, "sportsgear", String(SKU))
     setDoc(update, {quantityAvailable : (currentAvailable + deliveredAmount)}, {merge: true});
 }

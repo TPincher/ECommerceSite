@@ -30,19 +30,24 @@ return (
     showModal && 
     <dialog className={styles.modalBox} open={showModal}>
         <div className={styles.modal}>
-            <button><img src={starColour} alt="favouritebutton" onClick={alternateFavourite} height="50" width="50" /></button>
+            <button><img src={starColour} alt="favbutton" onClick={alternateFavourite} height="50" width="50" /></button>
             <img src={imageString} alt="productImage" height="300" width="400"/>
-            <p>{data[localID].name}</p>
-            <p>{data[localID].SKU}</p>
-            <p>{data[localID].image}</p>
-            <p>{data[localID].favourited}</p>
-            <p>{data[localID].inCart}</p>
-            <p>{data[localID].quantityAvailable} left in stock</p>
-            <p>${data[localID].price}.00 per unit</p>
+            <div>
+                <h1> {data[localID].name}</h1>
+                <p>Item number: {data[localID].SKU}</p>
+            </div>
+            <div>
+                <p>{data[localID].quantityAvailable} left in stock</p>
+                <p>${data[localID].price}.00 per unit</p>
+            </div>
+            {data[localID].inCart
+              ? <p>Item already in cart</p>
+              : <button onClick={handleAddToCart} className={styles.cartButton}>Add to cart</button>
+            }
+
             <button onClick={() => {setShowModal(false)
                 }}>Close
             </button>
-            <button onClick={handleAddToCart}>Add to cart</button>
         </div>
     </dialog>
   )

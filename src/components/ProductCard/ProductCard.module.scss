@@ -2,10 +2,14 @@
     text-align: center;
     height: 300px;
     width: 200px;
-    border: 2px solid black;
+    border: 2px double black;
     border-radius: 5px;
-    background-color: silver;
+    background: linear-gradient(to bottom right, silver 5%, grey 95%);
     margin: 5px;
+}
+
+.cardTitle {
+    height: 15%;
 }
 
 .outOfStock {

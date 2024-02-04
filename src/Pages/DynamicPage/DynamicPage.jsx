@@ -13,12 +13,14 @@ const DynamicPage = () => {
     const {data} = useContext(DataContext)
 
     return <div className={styles.Background}>
-                <h1>{category}</h1>
-                <Link to="/catalogue">Back to catalogue</Link>
+                <div className={pageStyles.titleBox}>
+                    <h1>{category.toUpperCase()}</h1>
+                    <Link to="/catalogue">Back to catalogue</Link>
+                </div>
                 <div className={pageStyles.box}>
                 {data && data.map((item, id) => {
                 if (item.category == category) {
-                    return <ProductCard localID={id} name={item.name} quantityAvailable={item.quantityAvailable} />
+                    return <ProductCard key={id} localID={id} name={item.name} quantityAvailable={item.quantityAvailable} inCart={item.inCart} />
                 }
                 })}
                 </div>
